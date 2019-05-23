@@ -144,7 +144,7 @@ function reactNativePlugin(Raven, options) {
  * Returns a promise that guarantees never to reject.
  */
 reactNativePlugin._persistPayload = function(payload) {
-  var AsyncStorage = require('react-native').AsyncStorage;
+  var AsyncStorage = require('@react-native-community/async-storage').default;
   return AsyncStorage.setItem(ASYNC_STORAGE_KEY, stringify(payload))['catch'](function() {
     return null;
   });
@@ -156,7 +156,7 @@ reactNativePlugin._persistPayload = function(payload) {
  * Returns a promise that guarantees never to reject.
  */
 reactNativePlugin._restorePayload = function() {
-  var AsyncStorage = require('react-native').AsyncStorage;
+  var AsyncStorage = require('@react-native-community/async-storage').default;
   var promise = AsyncStorage.getItem(ASYNC_STORAGE_KEY)
     .then(function(payload) {
       return JSON.parse(payload);
@@ -174,7 +174,7 @@ reactNativePlugin._restorePayload = function() {
  * Clears any persisted payloads.
  */
 reactNativePlugin._clearPayload = function() {
-  var AsyncStorage = require('react-native').AsyncStorage;
+  var AsyncStorage = require('@react-native-community/async-storage').default;
   return AsyncStorage.removeItem(ASYNC_STORAGE_KEY)['catch'](function() {
     return null;
   });
